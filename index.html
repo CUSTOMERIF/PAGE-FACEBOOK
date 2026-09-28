@@ -4,7 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#070b14">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VIETGROUP AI">
+
   <title>VIETGROUP AI</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
 
   <style>
     * { box-sizing: border-box; }
@@ -65,6 +76,27 @@
       color: #9fb0c8;
       font-size: 12px;
     }
+
+    #installBtn {
+      position: fixed;
+      right: 14px;
+      bottom: calc(14px + env(safe-area-inset-bottom));
+      z-index: 10000;
+      display: none;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(7,11,20,.92);
+      color: #fff;
+      font: 600 13px Arial, sans-serif;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    #installBtn.show {
+      display: block;
+    }
   </style>
 </head>
 
@@ -87,14 +119,46 @@
     referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
+  <button id="installBtn" type="button">Cài ứng dụng</button>
+
   <script>
     const frame = document.getElementById("webapp");
     const loading = document.getElementById("loading");
+    const installBtn = document.getElementById("installBtn");
 
     frame.addEventListener("load", function () {
       setTimeout(function () {
         loading.classList.add("hide");
       }, 300);
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js").catch(function (err) {
+          console.warn("Service Worker:", err);
+        });
+      });
+    }
+
+    let deferredPrompt = null;
+
+    window.addEventListener("beforeinstallprompt", function (event) {
+      event.preventDefault();
+      deferredPrompt = event;
+      installBtn.classList.add("show");
+    });
+
+    installBtn.addEventListener("click", async function () {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.classList.remove("show");
+    });
+
+    window.addEventListener("appinstalled", function () {
+      deferredPrompt = null;
+      installBtn.classList.remove("show");
     });
   </script>
 
