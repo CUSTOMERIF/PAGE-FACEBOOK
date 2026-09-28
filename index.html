@@ -5,107 +5,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#070b14">
   <title>VIETGROUP AI</title>
+
+  <!-- Fallback nếu JavaScript bị tắt -->
+  <meta http-equiv="refresh" content="2;url=https://script.google.com/macros/s/AKfycbx9j6Jnyf2OldQ7jbg2KXDAuaf9A7ZhelgLGI09_zKFS3zTOJmYTPQF-QxF6-gZmj2TdQ/exec">
+
   <style>
-    :root{
-      --bg:#070b14;--panel:#0d1524;--line:rgba(255,255,255,.10);
-      --text:#eef6ff;--muted:#8ea0b8;--cyan:#65e6ff;--violet:#a78bfa;
+    * {
+      box-sizing: border-box;
     }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;width:100%;height:100%;overflow:hidden;background:
-      radial-gradient(circle at 15% 10%,rgba(101,230,255,.08),transparent 28%),
-      radial-gradient(circle at 85% 10%,rgba(167,139,250,.08),transparent 28%),
-      var(--bg);color:var(--text);
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #070b14;
+      color: #eef6ff;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    #appFrame{position:fixed;inset:0;width:100%;height:100%;border:0;display:block;background:var(--bg)}
-    #loading{
-      position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:var(--bg);
-      transition:opacity .35s ease,visibility .35s ease
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(101,230,255,.10), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(167,139,250,.10), transparent 30%),
+        #070b14;
     }
-    #loading.hide{opacity:0;visibility:hidden;pointer-events:none}
-    .loader-card{
-      min-width:260px;padding:24px;text-align:center;border:1px solid var(--line);
-      border-radius:22px;background:rgba(13,21,36,.82);backdrop-filter:blur(16px);
-      box-shadow:0 24px 70px rgba(0,0,0,.35)
+
+    .card {
+      width: min(92vw, 360px);
+      padding: 28px 24px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 24px;
+      background: rgba(13,21,36,.88);
+      box-shadow: 0 24px 70px rgba(0,0,0,.38);
+      backdrop-filter: blur(16px);
     }
-    .logo{
-      width:52px;height:52px;margin:0 auto 14px;border-radius:17px;display:grid;place-items:center;
-      font-size:25px;background:linear-gradient(135deg,rgba(101,230,255,.18),rgba(167,139,250,.20));
-      border:1px solid rgba(255,255,255,.12)
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      font-size: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(101,230,255,.18), rgba(167,139,250,.20));
     }
-    .loader-card strong{display:block;font-size:15px;letter-spacing:.05em}
-    .loader-card span{display:block;margin-top:6px;color:var(--muted);font-size:12px}
-    .bar{height:4px;margin-top:18px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.06)}
-    .bar i{
-      display:block;width:42%;height:100%;border-radius:999px;
-      background:linear-gradient(90deg,var(--cyan),var(--violet));
-      animation:load 1.1s ease-in-out infinite alternate
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .05em;
     }
-    @keyframes load{from{transform:translateX(-90%)}to{transform:translateX(230%)}}
-    #fallback{
-      position:fixed;left:16px;right:16px;bottom:16px;z-index:20;display:none;
-      justify-content:center;pointer-events:none
+
+    p {
+      margin: 8px 0 0;
+      color: #8ea0b8;
+      font-size: 13px;
     }
-    #fallback a{
-      pointer-events:auto;padding:10px 14px;border-radius:13px;border:1px solid var(--line);
-      background:rgba(13,21,36,.92);color:var(--text);text-decoration:none;font-size:12px;
-      box-shadow:0 16px 40px rgba(0,0,0,.28)
+
+    .bar {
+      height: 4px;
+      margin: 20px 0 18px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .bar span {
+      display: block;
+      width: 40%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #65e6ff, #a78bfa);
+      animation: loading 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes loading {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(250%); }
+    }
+
+    a {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 13px;
+      color: #eef6ff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+    }
+
+    a:hover {
+      background: rgba(255,255,255,.10);
     }
   </style>
 </head>
+
 <body>
-  <div id="loading">
-    <div class="loader-card">
-      <div class="logo">◈</div>
-      <strong>VIETGROUP AI</strong>
-      <span>Đang mở hệ thống...</span>
-      <div class="bar"><i></i></div>
-    </div>
-  </div>
+  <main class="card">
+    <div class="logo">◈</div>
+    <h1>VIETGROUP AI</h1>
+    <p>Đang chuyển tới Web App...</p>
 
-  <iframe
-    id="appFrame"
-    title="VIETGROUP AI"
-    allow="clipboard-read; clipboard-write; fullscreen"
-    allowfullscreen>
-  </iframe>
+    <div class="bar"><span></span></div>
 
-  <div id="fallback">
-    <a id="openDirect" target="_blank" rel="noopener">Mở Web App trực tiếp</a>
-  </div>
+    <a href="https://script.google.com/macros/s/AKfycbx9j6Jnyf2OldQ7jbg2KXDAuaf9A7ZhelgLGI09_zKFS3zTOJmYTPQF-QxF6-gZmj2TdQ/exec" id="openApp">
+      Mở Web App
+    </a>
+  </main>
 
   <script>
-    // DÁN LINK WEB APP GOOGLE APPS SCRIPT CỦA BẠN VÀO DÒNG NÀY
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx9j6Jnyf2OldQ7jbg2KXDAuaf9A7ZhelgLGI09_zKFS3zTOJmYTPQF-QxF6-gZmj2TdQ/exec";
 
-    const frame = document.getElementById("appFrame");
-    const loading = document.getElementById("loading");
-    const fallback = document.getElementById("fallback");
-    const openDirect = document.getElementById("openDirect");
-
-    function validUrl(url){
-      return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(url);
-    }
-
-    if(validUrl(WEB_APP_URL)){
-      frame.src = WEB_APP_URL;
-      openDirect.href = WEB_APP_URL;
-
-      frame.addEventListener("load", () => {
-        setTimeout(() => loading.classList.add("hide"), 300);
-      });
-
-      setTimeout(() => {
-        fallback.style.display = "flex";
-      }, 5000);
-    } else {
-      loading.querySelector("span").textContent =
-        "Chưa nhập link Web App Apps Script trong WEB_APP_URL.";
-      fallback.style.display = "flex";
-      openDirect.textContent = "Chưa có link Web App";
-      openDirect.removeAttribute("href");
-    }
+    // Không dùng iframe để tránh lỗi "refused to connect".
+    // Chuyển trực tiếp trình duyệt sang Google Apps Script Web App.
+    setTimeout(() => {
+      window.location.replace(WEB_APP_URL);
+    }, 350);
   </script>
 </body>
 </html>
