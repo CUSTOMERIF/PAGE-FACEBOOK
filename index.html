@@ -7,6 +7,8 @@
   <title>VIETGROUP AI</title>
 
   <style>
+    * { box-sizing: border-box; }
+
     html, body {
       margin: 0;
       width: 100%;
@@ -15,16 +17,14 @@
       background: #070b14;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    #app {
+    #webapp {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
+      margin: 0;
+      padding: 0;
       display: block;
       background: #070b14;
     }
@@ -32,38 +32,38 @@
     #loading {
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: 9999;
       display: grid;
       place-items: center;
       background: #070b14;
-      color: white;
+      color: #fff;
       font-family: Arial, sans-serif;
       transition: opacity .25s ease, visibility .25s ease;
+      pointer-events: none;
     }
 
     #loading.hide {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none;
     }
 
     .box {
-      text-align: center;
-      padding: 24px 28px;
-      border-radius: 18px;
+      padding: 20px 24px;
+      border-radius: 16px;
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.10);
+      text-align: center;
     }
 
     .box strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
+      font-size: 15px;
+      margin-bottom: 6px;
     }
 
     .box span {
-      font-size: 13px;
       color: #9fb0c8;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -73,26 +73,28 @@
   <div id="loading">
     <div class="box">
       <strong>VIETGROUP AI</strong>
-      <span>Đang tải Web App...</span>
+      <span>Đang tải hệ thống...</span>
     </div>
   </div>
 
   <iframe
-    id="app"
+    id="webapp"
     src="https://script.google.com/macros/s/AKfycbx9j6Jnyf2OldQ7jbg2KXDAuaf9A7ZhelgLGI09_zKFS3zTOJmYTPQF-QxF6-gZmj2TdQ/exec"
     title="VIETGROUP AI"
+    sandbox="allow-scripts allow-forms allow-same-origin allow-modals allow-downloads allow-popups"
     allow="clipboard-read; clipboard-write; fullscreen"
-    allowfullscreen>
+    allowfullscreen
+    referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
   <script>
-    const frame = document.getElementById("app");
+    const frame = document.getElementById("webapp");
     const loading = document.getElementById("loading");
 
     frame.addEventListener("load", function () {
       setTimeout(function () {
         loading.classList.add("hide");
-      }, 250);
+      }, 300);
     });
   </script>
 
